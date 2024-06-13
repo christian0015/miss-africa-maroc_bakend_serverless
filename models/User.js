@@ -7,8 +7,9 @@ const userSchema = new mongoose.Schema({
   fullName: String,
   city: String,
   details: String,
-  points: { type: Number, default: 0 }
+  points: { type: Number, default: 0 },
 });
 
+const User = mongoose.model('User', userSchema);
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = User;
