@@ -51,13 +51,16 @@ app.use(bodyParser.json());
 // }
 // addUsers()
 
-// Routes
-const userRoutes = require('./routes/users');
-app.use('/users', userRoutes);
+// // Routes
+// const userRoutes = require('./routes/users');
+// app.use('/users', userRoutes);
 
-const voteRoutes = require('./routes/votes');
-app.use('/votes', voteRoutes);
+// const voteRoutes = require('./routes/votes');
+// app.use('/votes', voteRoutes);
 
-app.listen(5000, () => {
-  console.log('Server is running on port 5000');
-});
+// app.listen(5000, () => {
+//   console.log('Server is running on port 5000');
+// });
+module.exports = app; // Exporter l'application Express
+
+// git remote set-url origin https://github.com/christian0015/bakendmiss.git
