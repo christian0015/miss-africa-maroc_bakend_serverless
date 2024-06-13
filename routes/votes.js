@@ -16,14 +16,12 @@ const MAD_TO_EUR = 0.0907; // Taux de conversion de MAD à EUR
 router.post('/create-payment', (req, res) => {
   const { amount, userId } = req.body;
   const formattedAmount = (amount * MAD_TO_EUR).toFixed(2); // Convertir le montant de MAD à EUR
-  console.log( userId);
-  console.log( amount);
-  console.log( formattedAmount);
+  
   
   // Assurer que le montant est dans la plage autorisée par PayPal (min: 0.01, max: 10,000)
     const amountEUR = Math.min(Math.max(parseFloat(formattedAmount), 0.01), 10000).toFixed(2);
     //Cela assure que le montant est formaté avec deux décimales et qu'il est dans la plage autorisée par 
-    console.log( amountEUR);
+    
     
   const create_payment_json = {
     "intent": "sale",
@@ -60,11 +58,10 @@ router.post('/create-payment', (req, res) => {
       // Vérifier si payment est null
     if (payment === null) {
         // throw new Error("La réponse de PayPal est null.");
-        console.log("La réponse de PayPal est null.");
+        
         res.status(500).send('PayPal response is null');
       } else {
-        console.log(payment);
-        console.log(11);
+        
         const approval_url = payment.links.find(link => link.rel === 'approval_url').href;
       res.json({ approval_url });
         // res.json({ paymentID: payment.id });
