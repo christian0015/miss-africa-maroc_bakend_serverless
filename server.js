@@ -13,18 +13,22 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Définir les options CORS avec des origines spécifiques autorisées
-const corsOptions = {
-  origin: 'http://localhost:3000', // Seule cette origine est autorisée
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  optionsSuccessStatus: 200 // Certaines anciennes navigateurs (IE11, divers SmartTVs) ne fonctionnent pas avec le statut 204
-};
+// // Définir les options CORS avec des origines spécifiques autorisées
+// const corsOptions = {
+//   // origin: 'https://miss-africamaroc.vercel.app', // URL réelle de votre frontend sans le slash final
+//   origin: 'http://localhost:5000/', // URL réelle de votre frontend sans le slash final
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   optionsSuccessStatus: 200 // Some legacy browsers (IE11) choke on 204
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors());
+// Utilisation de CORS avec les options définies
+
 
 // Utilisation de bodyParser pour analyser les corps de requête en JSON
 app.use(bodyParser.json());
 
-// Utilisation de CORS avec les options définies
-app.use(cors(corsOptions));
 
 // Connectez-vous à la base de données MongoDB
 connectToDatabase(process.env.MONGODB_URI)
